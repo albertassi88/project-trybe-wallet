@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { userAction } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 
+import '../styles/Login.css';
+
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -11,48 +13,47 @@ function Login() {
 
     const renderLogin = () => {
         return (
-            <div>
+            <div className="box-login">
                 <form>
                     <label>
-                        Email
-                        <input     
-                        value={ email }
-                        type="text"
-                        onChange={ ({ target }) => setEmail( target.value ) }
-                        placeholder="Digite seu email"
+                        <h2>Email</h2>
+                        <input
+                            value={email}
+                            type="text"
+                            onChange={({ target }) => setEmail(target.value)}
+                            placeholder="Digite seu email"
                         />
                     </label>
                     <label>
-                        Senha
-                        <input         
-                        type="password"
-                        value={ password }
-                        onChange={ ({ target }) => setPassword( target.value ) }
-                        placeholder="Digite sua senha"
+                        <h2>Senha</h2>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={({ target }) => setPassword(target.value)}
+                            placeholder="Digite sua senha"
                         />
                     </label>
-                   
                 </form>
-                <div>
+                <div className="box-button-login">
                     <Link to='/wallet'>
-                        <button       
-                            type="button"       
-                            disabled={ !password || !email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) }
-                            onClick={ () => dispatch(userAction(email)) }
+                        <button
+                            type="button"
+                            disabled={!password || !email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)}
+                            onClick={() => dispatch(userAction(email))}
                         >
-                            Entrar
-                        </button> 
-                    </Link>                        
-                </div>        
+                        <h2>Entrar</h2>
+                        </button>
+                    </Link>
+                </div>
             </div>
-        )        
+        )
     }
 
     return (
-        <div>
-            { renderLogin() }
+        <div className="container-login">
+            {renderLogin()}
         </div>
-    );    
+    );
 }
 
 export default Login;

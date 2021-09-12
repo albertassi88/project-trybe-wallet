@@ -5,10 +5,6 @@ import Form from '../components/Form';
 function Wallet() { 
 
     const expenses = useSelector((state) => state.wallet.expenses);
-    const expenses2 = useSelector((state) => state.wallet.currencies);
-
-
-    console.log(expenses2)
 
     const renderExpenses = () => {
         return expenses.map(item => {
@@ -28,8 +24,7 @@ function Wallet() {
                         <td>{(moeda.ask * parseInt(item.value, 10)).toFixed(2)}</td>
                         <td>{moedaConvert[1]}</td>
                         <button
-                        type="button"
-                        // onClick={ () => addExcluir(id) }
+                            type="button"
                         >
                         Excluir
                         </button>
