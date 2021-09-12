@@ -66,21 +66,24 @@ function Form() {
 
   const renderSelectMoeda = () => {
     return (
-      <select
-        id="currency-input"
-        name="currency"
-        value={currency}
-        onChange={({ target }) => setCurrency(target.value)}
-      >
-        {Object.entries(exchangeRates).map((itemCurrency) => {
-          if (itemCurrency[0] === 'USDT') return '';
-          return (
-            <option key={itemCurrency[0]} >
-              {itemCurrency[0]}
-            </option>
-          );
-        })}
-      </select>
+      <label htmlFor='currency-input'>
+        Moeda
+        <select
+          id="currency-input"
+          name="currency"
+          value={currency}
+          onChange={({ target }) => setCurrency(target.value)}
+        >
+          {Object.entries(exchangeRates).map((itemCurrency) => {
+            if (itemCurrency[0] === 'USDT') return '';
+            return (
+              <option key={itemCurrency[0]} >
+                {itemCurrency[0]}
+              </option>
+            );
+          })}
+        </select>
+      </label>
     );
   }
 
@@ -123,19 +126,22 @@ function Form() {
   }
 
   return (
-    <div>
+    <div className="container-form">
+      <h2>Trybe Wallet</h2>
       <form>
-        {renderInputDescricao()}
-        {renderTag()}
-        {renderSelectPagamento()}
-        {renderSelectMoeda()}
-        {renderInputValor()}
-        <button
-          onClick={() => renderDispatch()}
-          type="button"
-        >
-          Adicionar despesa
-        </button>
+        <div className="box-form">
+          {renderInputDescricao()}
+          {renderTag()}
+          {renderSelectPagamento()}
+          {renderSelectMoeda()}
+          {renderInputValor()}
+          <button
+            onClick={() => renderDispatch()}
+            type="button"
+          >
+            Adicionar despesa
+          </button>
+        </div>
       </form>
     </div>
   );

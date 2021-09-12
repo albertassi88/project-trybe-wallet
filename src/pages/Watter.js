@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Form from '../components/Form';
 
+import '../styles/Wallet.css';
+
 function Wallet() { 
 
     const expenses = useSelector((state) => state.wallet.expenses);
@@ -12,9 +14,9 @@ function Wallet() {
             const moeda = exchangeRates[currency];
             const moedaConvert = moeda.name.split('/');            
             return (
-              <div>
+              <div className="box-wallet-expenses">
                   <table>
-                    <tr key={ item.id }>
+                    <tr className="box-expenses-td" key={ item.id }>
                         <td>{item.description}</td>
                         <td>{item.tag}</td>
                         <td>{item.method}</td>
@@ -23,11 +25,6 @@ function Wallet() {
                         <td>{parseFloat(moeda.ask).toFixed(2)}</td>
                         <td>{(moeda.ask * parseInt(item.value, 10)).toFixed(2)}</td>
                         <td>{moedaConvert[1]}</td>
-                        <button
-                            type="button"
-                        >
-                        Excluir
-                        </button>
                     </tr>
                   </table>  
               </div>
@@ -37,7 +34,7 @@ function Wallet() {
 
     const renderDescription = () => {
         return (
-          <tr>
+          <tr className="box-wallet-add" >
             <th>Descrição</th>
             <th>Tag</th>
             <th>Método de pagamento</th>
@@ -46,12 +43,11 @@ function Wallet() {
             <th>Câmbio utilizado</th>
             <th>Valor convertido</th>
             <th>Moeda de conversão</th>
-            <th>Editar/Excluir</th>
           </tr>);
     };
 
     return (
-        <div>
+        <div className="box-wallet-description">
             <Form />
             { renderDescription() }
             { renderExpenses() }
